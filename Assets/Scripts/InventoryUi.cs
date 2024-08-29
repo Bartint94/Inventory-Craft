@@ -4,22 +4,77 @@ using UnityEngine;
 
 public class InventoryUi : MonoBehaviour
 {
+    public static InventoryUi instance;
     public SlotUi[] slots;
     public List<ItemScriptable> items = new List<ItemScriptable>();
+    public List<ItemScriptable> tempItems = new List<ItemScriptable>();
+
+    [SerializeField] GameObject background;
+
+    PlayerInputs _playerInputs;
+    public PlayerInputs playerInputs => _playerInputs;
+
+
+    bool isActive;
     private void Awake()
     {
-        slots = GetComponentsInChildren<SlotUi>();
-        
+        instance = this;
+        slots = GetComponentsInChildren<SlotUi>(true);
+        _playerInputs = FindAnyObjectByType<PlayerInputs>();
     }
-    void ClearSlots()
+    private void Start()
     {
-        foreach (SlotUi slot in slots)
+        CloseInventory();
+    }
+    private void OnEnable()
+    {
+        _playerInputs.isHud += Toggler;
+    }
+    private void OnDisable()
+    {
+        _playerInputs.isHud -= Toggler;  
+    }
+
+    void Toggler()
+    {
+        if(isActive)
         {
-            slot.InitItem(null);
+            CloseInventory();
+        }
+        else
+        {
+            OpenInventory();
         }
     }
-    
-    public void AddItem(ItemScriptable item)
+    void OpenInventory()
+    {
+        background.SetActive(true);    
+
+        foreach (var item in tempItems)
+        {
+            AddItem(item);
+        }
+        tempItems.Clear();
+        isActive = true;
+    }
+    void CloseInventory()
+    {
+        background.SetActive(false);
+        isActive = false;
+    }
+
+    public void CollectItem(ItemScriptable item)
+    {
+        if (isActive)
+        {
+            AddItem(item);
+        }
+        else
+        {
+            tempItems.Add(item);
+        }
+    }
+    void AddItem(ItemScriptable item)
     {
         var slot = FindFreeSlot(item);
 
@@ -36,26 +91,27 @@ public class InventoryUi : MonoBehaviour
         {
             if (slot != null)
             {
-                if(slot.currentItem)
-                if (slot.currentItem.id == item.id)
-                {
-                    if (slot.quantity < item.slotCapacity)
+                if (slot.currentItem)
+                    if (slot.currentItem.id == item.id)
                     {
-                        free = slot;
+                        if (slot.quantity < item.slotCapacity)
+                        {
+                            free = slot;
+                        }
                     }
-                }
             }
         }
 
-        if(free == null)
+        if (free == null)
         {
             foreach (var slot in slots)
             {
                 if(slot != null) 
                 {
-                    if(slot.currentItem=null)
+                    if(slot.currentItem == null)
                     {
                         free = slot;
+                        break;
                     }
                 }
             }

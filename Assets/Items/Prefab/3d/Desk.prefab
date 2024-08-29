@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2032694925857634473}
   - component: {fileID: 1598830833357985163}
   - component: {fileID: 3932072942539820809}
-  - component: {fileID: 910902597127533511}
+  - component: {fileID: 6362956846111447634}
+  - component: {fileID: -2197683423250809414}
   m_Layer: 6
   m_Name: Desk
   m_TagString: Untagged
@@ -84,7 +85,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &910902597127533511
+--- !u!114 &6362956846111447634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5166810958916774216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0ea225efe78214d8533b3dbf430875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 51f43141d4536da43adf09fe218060bc, type: 2}
+  pickupText: {fileID: 3912382642933585670, guid: 1c18813c7678fcc4ab9ce23e9ffb4b8d,
+    type: 3}
+--- !u!65 &-2197683423250809414
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,5 +119,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.0000002, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

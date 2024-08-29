@@ -116,8 +116,8 @@ GameObject:
   - component: {fileID: 6096330444265338669}
   - component: {fileID: 4109671527684194822}
   - component: {fileID: 9195377040874677938}
-  - component: {fileID: 7714493844091124562}
   - component: {fileID: 2867601950590080470}
+  - component: {fileID: 1773631216978747214}
   m_Layer: 6
   m_Name: Axe
   m_TagString: Untagged
@@ -191,7 +191,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7714493844091124562
+--- !u!114 &2867601950590080470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8593339543475300381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0ea225efe78214d8533b3dbf430875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: da11d1cebf9edf845a9e013bf5bf30b2, type: 2}
+  pickupText: {fileID: 3912382642933585670, guid: 1c18813c7678fcc4ab9ce23e9ffb4b8d,
+    type: 3}
+--- !u!65 &1773631216978747214
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,17 +227,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2867601950590080470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8593339543475300381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd0ea225efe78214d8533b3dbf430875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: da11d1cebf9edf845a9e013bf5bf30b2, type: 2}
-  inventoryUi: {fileID: 0}

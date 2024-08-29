@@ -116,7 +116,8 @@ GameObject:
   - component: {fileID: 7271286536059220124}
   - component: {fileID: 678822739542530155}
   - component: {fileID: 9064958179012795226}
-  - component: {fileID: 6315942641876272705}
+  - component: {fileID: 8218792398817491021}
+  - component: {fileID: 4669461234786967969}
   m_Layer: 6
   m_Name: Mace
   m_TagString: Untagged
@@ -192,7 +193,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6315942641876272705
+--- !u!114 &8218792398817491021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273987002723767879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0ea225efe78214d8533b3dbf430875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 0dbf7c34eef698f45b7048c0edae4463, type: 2}
+  pickupText: {fileID: 3912382642933585670, guid: 1c18813c7678fcc4ab9ce23e9ffb4b8d,
+    type: 3}
+--- !u!65 &4669461234786967969
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
