@@ -56,6 +56,7 @@ public class InventoryUi : MonoBehaviour
         }
         tempItems.Clear();
         isActive = true;
+        slots[0].slotButton.Select();
     }
     void CloseInventory()
     {

@@ -9,12 +9,15 @@ public class SlotUi : MonoBehaviour
 {
     RawImage _rawImage;
     TextMeshProUGUI _text;
+    Button _button;
+    public Button slotButton => _button;
 
     public ItemScriptable currentItem;
     public int quantity;
     private void Awake()
     {
         _rawImage = GetComponentInChildren<RawImage>();
+        _button = GetComponent<Button>();
         _text = GetComponentInChildren<TextMeshProUGUI>();
         SetTexture(null);
     }
