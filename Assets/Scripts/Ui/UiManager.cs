@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class UiManager : MonoBehaviour
@@ -19,6 +20,9 @@ public class UiManager : MonoBehaviour
     public PlayerInputs playerInputs => _playerInputs;
 
     public EventSystem eventSystem;
+
+    public UnityEvent successCraft;
+    public UnityEvent failureCraft;
     private void Awake()
     {
         instance = this;

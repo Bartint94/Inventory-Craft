@@ -111,11 +111,15 @@ public class CraftingUi : MonoBehaviour
                 if(ChanceCalculation(slot._recipe))
                 {
                     uiManager.inventoryUi.CollectItem(slot._recipe.resultItem);
+                    uiManager.successCraft.Invoke();
+                }
+                else
+                {
+                    uiManager.failureCraft.Invoke();
                 }
             }
         }
-        
-
+        uiManager.inventoryUi.Toggler();
     }
     bool ChanceCalculation(Recipe recipe)
     {
