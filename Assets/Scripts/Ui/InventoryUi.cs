@@ -1,41 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InventoryUi : MonoBehaviour
 {
-    public static InventoryUi instance;
     public SlotUi[] slots;
     public List<ItemScriptable> items = new List<ItemScriptable>();
     public List<ItemScriptable> tempItems = new List<ItemScriptable>();
 
     [SerializeField] GameObject background;
 
-    PlayerInputs _playerInputs;
-    public PlayerInputs playerInputs => _playerInputs;
-
+  
 
     bool isActive;
+
+    UiManager uiManager;
     private void Awake()
     {
-        instance = this;
         slots = GetComponentsInChildren<SlotUi>(true);
-        _playerInputs = FindAnyObjectByType<PlayerInputs>();
     }
     private void Start()
     {
+        uiManager = UiManager.instance;
         CloseInventory();
     }
-    private void OnEnable()
+    private void Update()
     {
-        _playerInputs.isHud += Toggler;
-    }
-    private void OnDisable()
-    {
-        _playerInputs.isHud -= Toggler;  
+        if (isActive)
+        {
+            uiManager.playerInputs.InventoryInput();
+            
+        }
     }
 
-    void Toggler()
+
+    public void Toggler()
     {
         if(isActive)
         {
@@ -48,6 +48,7 @@ public class InventoryUi : MonoBehaviour
     }
     void OpenInventory()
     {
+        UiManager.instance.craftingUi.CloseCraft();
         background.SetActive(true);    
 
         foreach (var item in tempItems)
@@ -58,7 +59,7 @@ public class InventoryUi : MonoBehaviour
         isActive = true;
         slots[0].slotButton.Select();
     }
-    void CloseInventory()
+    public void CloseInventory()
     {
         background.SetActive(false);
         isActive = false;
@@ -74,6 +75,7 @@ public class InventoryUi : MonoBehaviour
         {
             tempItems.Add(item);
         }
+        items.Add(item);
     }
     void AddItem(ItemScriptable item)
     {
@@ -123,5 +125,41 @@ public class InventoryUi : MonoBehaviour
             Debug.Log("No Space");
         }
         return free;
+    }
+
+    public void RemoveItem(ItemScriptable item)
+    {
+        foreach(var slot in slots)
+        {
+            if (!slot.currentItem) return;
+
+            if (slot.currentItem.id == item.id)
+            {
+                items.Remove(slot.currentItem);
+                slot.UseItem();
+            }
+        }
+    }
+
+    public void DropItem()
+    {
+        var eventsystem = UiManager.instance.eventSystem;
+        foreach(var slot in slots)
+        {
+            if (eventsystem.currentSelectedGameObject == slot.slotButton.gameObject)
+            {
+                if(slot.quantity <= 0)
+                {
+                    return;
+
+                }
+                else 
+                {
+                    items.Remove(slot.currentItem);
+                    slot.DropItem();
+                }
+             
+            }
+        }
     }
 }

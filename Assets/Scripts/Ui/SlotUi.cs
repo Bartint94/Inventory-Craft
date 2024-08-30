@@ -32,4 +32,37 @@ public class SlotUi : MonoBehaviour
         _text.text = quantity.ToString();
         SetTexture(item._texture);
     }
+    public void DropItem()
+    {
+        var pos = UiManager.instance.playerInputs.transform.position;
+
+        Instantiate(currentItem.prefab,pos,Quaternion.identity);
+
+        Subtract();
+
+        if (quantity == 0)
+        {
+            ClearSlot();
+        }
+    }
+
+    public void UseItem()
+    {
+        Subtract();
+
+        if (quantity == 0)
+        {
+            ClearSlot();
+        }
+    }
+    void Subtract()
+    {
+        quantity--;
+        _text.text = quantity.ToString();
+    }
+    void ClearSlot()
+    {
+        currentItem = null;
+        SetTexture(null);
+    }
 }

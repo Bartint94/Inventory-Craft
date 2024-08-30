@@ -12,8 +12,8 @@ public class Interaction : MonoBehaviour
     PlayerInputs playerInputs;
     private void Start()
     {
-        inventoryUi = InventoryUi.instance;
-        playerInputs = inventoryUi.playerInputs;
+        inventoryUi = UiManager.instance.inventoryUi;
+        playerInputs = UiManager.instance.playerInputs;
         cam = Camera.main;
     }
     private void OnTriggerEnter(Collider other)

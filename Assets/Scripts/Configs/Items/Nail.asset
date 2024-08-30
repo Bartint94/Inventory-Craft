@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03b754eaffba2d346a97ebb63f39f7ee, type: 3}
-  m_Name: Wood
+  m_Name: Nail
   m_EditorClassIdentifier: 
-  _Texture: {fileID: 2800000, guid: 3709f8d38351e1c44932fd88fa836abe, type: 3}
-  id: 1
+  _Texture: {fileID: 2800000, guid: ace7cdf2f0224f64c84a4b5f1c442f1f, type: 3}
+  id: 5
   slotCapacity: 5
+  prefab: {fileID: 7560162364817917165, guid: 550ddb56fca170d42a9ba020bd935dfa, type: 3}

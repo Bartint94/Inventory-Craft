@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInputs : MonoBehaviour
@@ -10,11 +11,20 @@ public class PlayerInputs : MonoBehaviour
     public bool pickup;
     public float left;
     public float right;
+
+
+    
     [SerializeField] float turnMultipiler;
-    public event Action isHud;
-    private void Update()
+    public event Action onInventory;
+    public event Action onCraft;
+
+    public event Action onDrop;
+    public event Action onTryCraft;
+
+
+    public void Move()
     {
-        if(Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             forward = true;
         }
@@ -23,7 +33,7 @@ public class PlayerInputs : MonoBehaviour
             forward = false;
         }
 
-        if(Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             backward = true;
         }
@@ -33,7 +43,7 @@ public class PlayerInputs : MonoBehaviour
         }
 
 
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             left = -1 * turnMultipiler;
         }
@@ -42,7 +52,7 @@ public class PlayerInputs : MonoBehaviour
             left = 0;
         }
 
-        if(Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             right = 1 * turnMultipiler;
         }
@@ -50,13 +60,38 @@ public class PlayerInputs : MonoBehaviour
         {
             right = 0;
         }
+    }
 
 
-
-        if(Input.GetKeyDown(KeyCode.Tab))
+    public void InventoryInput()
+    {
+        if(Input.GetKeyDown(KeyCode.X))
         {
-            isHud?.Invoke();
+            onDrop?.Invoke();
         }
+
+    }
+
+    public void CraftInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Z)) 
+        {
+            onTryCraft?.Invoke();
+        }
+    }
+    private void Update()
+    {
+        Move();
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            onInventory?.Invoke();
+        }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            onCraft?.Invoke();  
+        }
+
 
         if(Input.GetKeyDown(KeyCode.E))
         {
